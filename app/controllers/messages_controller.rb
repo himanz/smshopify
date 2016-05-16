@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
 
 	def inbound
 		twiml = Twilio::TwiML::Response.new do |r|
-      r.Message "Hey there! I got a text from you."
+      r.Message "Hey there! I got a text from you. JONOS"
     end
     render_twiml twiml
 	end
