@@ -54,9 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   root 'messages#index'
-  resources :messages, only: :index do
-    collection do
-      get "inbound"
-    end
-  end
+  resources :messages, only: :index
+  post 'messages/inbound' => 'messages#inbound'
 end
