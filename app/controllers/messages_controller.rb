@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
     sender = params[:From]
     
 		twiml = Twilio::TwiML::Response.new do |r|
-      r.Message "Hey there! I got a text from you. #{sender}"
+      r.Message Message.incoming_parse
     end
 
     render_twiml twiml
