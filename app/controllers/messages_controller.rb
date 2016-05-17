@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   end
 
 	def inbound
-    reply = Self.incoming_parse(params)
+    reply = Message.incoming_parse(params)
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
     end

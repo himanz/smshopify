@@ -1,5 +1,5 @@
 class Message < ActiveRecord::Base
-	def incoming_parse(params)
+	def self.incoming_parse(params)
 		sender = params[:From]
 		if params[:Body] == "Test"
 			return "I am returning Test"
