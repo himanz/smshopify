@@ -14,7 +14,15 @@ class MessagesController < ApplicationController
 	def inbound
     @user = User.find_or_create_by(from: params["From"])
     # reply = Message.incoming_parse(params)
-    reply = Message.menu
+    if @user.state == 1
+      reply = Message.menu
+      @user.state += 1
+    elsif @user.state == 2
+    	if params["Body"] == "1"
+    	  reply = Message.enter_product_id
+    	  @user.state += 1
+    	end
+    end
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
     end

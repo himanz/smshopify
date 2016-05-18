@@ -11,4 +11,8 @@ class Message < ActiveRecord::Base
 	def self.menu
 		return "\nMenu\n1. Get a product\n2. To be annouced"
 	end
+
+	def self.enter_product_id
+		return "Enter product ID"
+	end
 end
