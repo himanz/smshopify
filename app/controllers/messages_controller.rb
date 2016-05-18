@@ -29,9 +29,12 @@ class MessagesController < ApplicationController
       	reply = Message.menu
       end
     elsif @user.step == 2
-    	reply = Message.enter_product_id
     	product = ShopifyAPI::Product.find(params["Body"])
-    	reply = product.title
+    	if product == nil
+    	  reply = Message.enter_product_id
+    	else
+    	  reply = product.title
+    	end
     end
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
