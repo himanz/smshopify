@@ -9,6 +9,6 @@ class Message < ActiveRecord::Base
 	end
 
 	def self.menu
-		return "Menu\n1. Get a product\n2. To be annouced"
+		return "\nMenu\n1. Get a product\n2. To be annouced"
 	end
 end
