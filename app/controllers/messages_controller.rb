@@ -13,19 +13,13 @@ class MessagesController < ApplicationController
   end
 
 	def inbound
-    session["counter"] ||= 0
-    sms_count = session["counter"]
-    if sms_count == 0
-    	puts "TESTING"
-    else
-    	puts "OVER 9000"
-    end
+   
     reply = Message.incoming_parse(params)
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
     end
     
-    session["counter"] += 1
+    
 
     render_twiml twiml
 	end
