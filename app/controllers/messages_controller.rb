@@ -13,7 +13,10 @@ class MessagesController < ApplicationController
 
 	def inbound
     @user = User.find_or_create_by(from: params["From"])
-    # reply = Message.incoming_parse(params)
+    
+    shop_url = "https://#{ENV["shopify_api_key"]}:#{ENV["shopify_password"]}@chef-curry.myshopify.com/admin"
+    ShopifyAPI::Base.site = shop_url
+
     if params["Body"] == "reset"
     	@user.step = 1
     end
