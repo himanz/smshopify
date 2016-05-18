@@ -1,7 +1,6 @@
 class MessagesController < ApplicationController
 	include Webhookable
   # after_filter :set_header
-  enable :sessions
   
 	skip_before_action :verify_authenticity_token
 
@@ -19,8 +18,6 @@ class MessagesController < ApplicationController
       r.Message reply
     end
     
-    
-
     render_twiml twiml
 	end
 
