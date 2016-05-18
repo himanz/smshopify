@@ -14,6 +14,9 @@ class MessagesController < ApplicationController
 	def inbound
     @user = User.find_or_create_by(from: params["From"])
     # reply = Message.incoming_parse(params)
+    if params["Body"] == "reset"
+    	@user.step = 1
+    end
     if @user.step == 1
       if params["Body"] == "1"
       	reply = Message.enter_product_id
