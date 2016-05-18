@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
   end
 
 	def inbound
-   
+    @user = User.find_or_create_by(from: params["From"])
     reply = Message.incoming_parse(params)
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
