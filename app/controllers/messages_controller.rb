@@ -17,6 +17,7 @@ class MessagesController < ApplicationController
     if @user.step == 1
       reply = Message.menu
       @user.step += 1
+      @user.save
     elsif @user.step == 2
     	if params["Body"] == "1"
     	  reply = Message.enter_product_id
