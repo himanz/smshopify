@@ -15,14 +15,16 @@ class MessagesController < ApplicationController
     @user = User.find_or_create_by(from: params["From"])
     # reply = Message.incoming_parse(params)
     if @user.step == 1
-      reply = Message.menu
-      @user.step += 1
-      @user.save
+      if params["Body"] == "1"
+      	reply = Message.enter_product_id
+        @user.step += 1
+        @user.save
+      else
+      	reply = Message.menu
+      end
     elsif @user.step == 2
-    	if params["Body"] == "1"
-    	  reply = Message.enter_product_id
-    	  @user.step += 1
-    	end
+    	reply = Message.enter_product_id
+    	
     end
 		twiml = Twilio::TwiML::Response.new do |r|
       r.Message reply
